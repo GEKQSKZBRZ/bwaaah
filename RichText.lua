@@ -396,7 +396,7 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 		TextLabel = game:GetService("ReplicatedStorage"):FindFirstChild("RichTextThing")
 	end
 	
-	local textLabel = TextLabel
+	local textLabel = TextLabel:Clone()
 	local imageLabel = Instance.new("ImageLabel")
 	local layerCollector = getLayerCollector(frame)
 
