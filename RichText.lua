@@ -379,8 +379,8 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 	local linePosition = 0
 	local overflown = false
 
+	local TextLabel = Instance.new("TextLabel")
 	if not game:GetService("ReplicatedStorage"):FindFirstChild("RichTextThing") then
-		local TextLabel = Instance.new("TextLabel")
 		TextLabel.Parent = game:GetService("ReplicatedStorage")
 		TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
