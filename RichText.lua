@@ -399,7 +399,6 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 	local textLabel = TextLabel
 	local imageLabel = Instance.new("ImageLabel")
 	local layerCollector = getLayerCollector(frame)
-	textLabel.AutoLocalize = false
 
 	local applyProperty, applyMarkup, formatLabel, printText, printImage, printSeries, applyStroke
 
