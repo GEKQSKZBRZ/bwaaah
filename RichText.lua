@@ -378,7 +378,19 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 	local frameProperties = {}
 	local linePosition = 0
 	local overflown = false
-	local textLabel = script.TextLabel:Clone()
+
+	local TextLabel = Instance.new("TextLabel")
+	TextLabel.Parent = game:GetService("ReplicatedStorage")
+	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	TextLabel.BorderSizePixel = 0
+	TextLabel.Size = UDim2.new(0, 200, 0, 50)
+	TextLabel.Font = Enum.Font.SourceSansBold
+	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TextLabel.TextSize = 14.000
+	TextLabel.TextWrapped = true
+	
+	local textLabel = TextLabel
 	local imageLabel = Instance.new("ImageLabel")
 	local layerCollector = getLayerCollector(frame)
 	textLabel.AutoLocalize = false
