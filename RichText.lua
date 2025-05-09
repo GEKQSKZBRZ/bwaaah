@@ -379,16 +379,19 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 	local linePosition = 0
 	local overflown = false
 
-	local TextLabel = Instance.new("TextLabel")
-	TextLabel.Parent = game:GetService("ReplicatedStorage")
-	TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
-	TextLabel.BorderSizePixel = 0
-	TextLabel.Size = UDim2.new(0, 200, 0, 50)
-	TextLabel.Font = Enum.Font.SourceSansBold
-	TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TextLabel.TextSize = 14.000
-	TextLabel.TextWrapped = true
+	if not game:GetService("ReplicatedStorage"):FindFirstChild("RichTextThing") then
+		local TextLabel = Instance.new("TextLabel")
+		TextLabel.Parent = game:GetService("ReplicatedStorage")
+		TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+		TextLabel.BorderSizePixel = 0
+		TextLabel.Size = UDim2.new(0, 200, 0, 50)
+		TextLabel.Font = Enum.Font.SourceSansBold
+		TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+		TextLabel.TextSize = 14.000
+		TextLabel.TextWrapped = true
+		TextLabel.Name = "RichTextThing"
+	end
 	
 	local textLabel = TextLabel
 	local imageLabel = Instance.new("ImageLabel")
@@ -524,7 +527,6 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 		if typeof(PlaceToPlay) == "CFrame" then
 			local NewPlace = Instance.new("Part", workspace.ServerFX)
 			NewPlace.CFrame = PlaceToPlay
-
 			NewSound.Parent = NewPlace
 			NewPlace.Anchored = true
 			NewPlace.CanCollide = false
@@ -533,15 +535,12 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 			NewPlace.Transparency = 1
 			NewPlace.Name = "SoundPart"
 			NewPlace.Size = Vector3.one
-
 			NewSound:Play()
 
 			task.delay(NewSound.TimeLength, game.Destroy, NewPlace)
-
 		elseif typeof(PlaceToPlay) == "Instance" then
 			NewSound.Parent = PlaceToPlay
 			NewSound:Play()
-
 			task.delay(NewSound.TimeLength, game.Destroy, NewSound)
 		end
 
