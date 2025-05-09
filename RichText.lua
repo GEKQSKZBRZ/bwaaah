@@ -391,6 +391,8 @@ function richText:New(frame: Frame, text: string, startingProperties, allowOverf
 		TextLabel.TextSize = 14.000
 		TextLabel.TextWrapped = true
 		TextLabel.Name = "RichTextThing"
+	else
+		TextLabel = game:GetService("ReplicatedStorage"):FindFirstChild("RichTextThing")
 	end
 	
 	local textLabel = TextLabel
