@@ -65,7 +65,6 @@ function module.Damage(tab)
 			local victim1 = v
 			local p1 = rootPart.Position + rootPart.CFrame.lookVector * 5
 			local p2 = victim1.HumanoidRootPart.Position
-			
 			if (p1 - p2).magnitude <= 6 then
 				task.spawn(function()
 					game.Lighting.Blur.Size = 16
@@ -73,7 +72,6 @@ function module.Damage(tab)
 						game.Lighting.Blur.Size = game.Lighting.Blur.Size - 2
 					wait(0.03) end
 				end)
-				
 				if game.ReplicatedStorage.Remotes.Damage:InvokeServer(_G.Pass, v, tab) then
 					victim = v
 				end
@@ -82,6 +80,277 @@ function module.Damage(tab)
 	end
 	return victim
 end
+
+local testIDs = {
+	"rbxassetid://18624303328";
+	"rbxassetid://18624305278";
+	"rbxassetid://18624307705";
+	"rbxassetid://18624309685";
+	"rbxassetid://18624311741";
+	"rbxassetid://18624313567";
+	"rbxassetid://18623938612",
+	"rbxassetid://18623940606",
+	"rbxassetid://18623943402",
+	"rbxassetid://18623945303",
+	"rbxassetid://18623955533",
+	"rbxassetid://18623957991",
+	"rbxassetid://18623960093",
+	"rbxassetid://18623963141",
+	"rbxassetid://18623965062",
+	"rbxassetid://18623967305",
+	"rbxassetid://18623969292",
+	"rbxassetid://18623971397",
+	"rbxassetid://18623977136",
+	"rbxassetid://18623981199",
+	"rbxassetid://18623991698",
+	"rbxassetid://18623995684",
+	"rbxassetid://18624012890",
+	"rbxassetid://18624015448",
+	"rbxassetid://18624017135",
+	"rbxassetid://18624019213",
+	"rbxassetid://18624021162",
+	"rbxassetid://18624025100",
+	"rbxassetid://18624028251",
+	"rbxassetid://18624030654",
+}
+
+function module.CombatAnimation(combatAnim:AnimationTrack, character:Model, bp, slashDir, key)
+	local humanoid = character.Humanoid
+	local rootPart = character.HumanoidRootPart
+	
+	local event = combatAnim.KeyframeReached:Connect(function(keyframe)
+		if keyframe == "Slash" then
+			if slashDir[combatAnim.Name] then
+				game.ReplicatedStorage.Remotes.SwordHandler:FireServer({_G.Pass,"SlashEffect", rootPart.CFrame + rootPart.CFrame.lookVector * 2, slashDir[combatAnim.Name]["Angle"], slashDir[combatAnim.Name]["Direction"], slashDir[combatAnim.Name]["Speed"], slashDir[combatAnim.Name]["Times"], slashDir[combatAnim.Name]["Size"], slashDir[combatAnim.Name]["Color"]})
+			end
+		end
+		if keyframe == "1" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				 module.shakeScreen("Bump")
+			end
+		elseif keyframe == "2" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "3" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("SmallExplosion")
+			end
+		elseif keyframe == "4" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "5" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "6" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "7" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.Knife_Slash,character.Head})
+			end)
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "8" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.Knife_Slash,character.Head})
+			end)
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "9" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.Knife_Slash,character.Head})
+			end)
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "10" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			
+			combatAnim:AdjustSpeed(0)
+			local victim = module.Damage(character, combatAnim)
+			if victim then
+				bp.Position = bp.Position + Vector3.new(0,25,0)
+				bp.P = 10000
+				module.shakeScreen("Explosion")
+			end
+			combatAnim:AdjustSpeed(1)
+		elseif keyframe == "11" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "12" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "13" then
+			character.Head:FindFirstChild("Spear"):Play()
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "14" then
+			character.Head:FindFirstChild("ChaosSaberSlice"):Play()
+			
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "15" then
+			character.Head:FindFirstChild("ChaosSaberSlice"):Play()
+			
+			combatAnim:AdjustSpeed(0.2)
+			local victim = module.Damage(character, combatAnim)
+			combatAnim:AdjustSpeed(1)
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "16" then
+			
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.KnifeSwing2,character.Head})
+			end)
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "17" then
+			
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.KnifeSwing2,character.Head})
+			end)
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+		elseif keyframe == "18" then
+			combatAnim:AdjustSpeed(0.4)
+			character.Head:FindFirstChild("Swing2"):Play()
+			
+			
+			local victim = module.Damage(character, combatAnim)
+			if victim then
+				module.shakeScreen("Explosion")
+			end
+			combatAnim:AdjustSpeed(0.9)
+		elseif keyframe == "19" then
+			character.Head:FindFirstChild("Swing2"):Play()
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.KnifeSwing2,character.Head})
+			end)
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("SmallExplosion")
+			end
+		elseif keyframe == "20" then
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.KnifeSwing2,character.Head})
+			end)
+			
+			local victim = module.Damage(character, combatAnim)
+			
+			if victim then
+				module.shakeScreen("BigExplosion")
+			end
+		elseif keyframe == "21" then
+			task.spawn(function()
+				game.ReplicatedStorage.Remotes.Functions:InvokeServer({_G.Pass,"PlaySound",game.ReplicatedStorage.Sounds.KnifeSwing2,character.Head})
+			end)
+
+			local victim = module.Damage(character, combatAnim)
+
+			if victim then
+				module.shakeScreen("Bump")
+			end
+		elseif keyframe == "BettyGrab" then
+			combatAnim:AdjustSpeed(0.1)
+			_G.RootPartFollow = false
+			game.ReplicatedStorage.Remotes.BettyMoves:InvokeServer({_G.Pass, "CombatGrab"})
+			combatAnim:AdjustSpeed(0.5)
+			_G.RootPartFollow = true
+		end
+	end)
+	
+	local d 
+	d = character.AncestryChanged:Connect(function()
+		if event then
+			event:Disconnect(); event = nil; 
+		end
+		if d then
+			d:Disconnect(); d = nil;
+		end
+	
+	end)
+	
+	if table.find(testIDs, combatAnim.Animation.AnimationId) then
+		task.delay(combatAnim.Length, function()
+			if event then
+				event:Disconnect(); event = nil;
+			end
+			if d then
+				d:Disconnect(); d = nil;
+			end
+		end)
+	end
+end
+
 function moveForward(bp, lookvector, whitelist)
 	if lookvector then
 		local ray = Ray.new(rootPart.Position,(lookvector))
@@ -206,7 +475,7 @@ function module.Combat(typ, blade, upgraded)
 		if blade then
 			--game.ReplicatedStorage.Remotes.SwordHandler:FireServer({_G.Pass,"SliceEffect",true,"ChaosSaber"})
 		end
-		MainModule.CombatAnimation(combatAnim, character, bp, slashTable)
+		module.CombatAnimation(combatAnim, character, bp, slashTable)
 		combatAnim.KeyframeReached:Connect(function(keyframe)
 			if keyframe == "Slash" then
 				if typ == "Light1" then
