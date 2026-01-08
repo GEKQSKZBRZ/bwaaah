@@ -12,9 +12,6 @@ local huge = math.huge
 local Remotes = game.ReplicatedStorage:WaitForChild("Remotes")
 
 local camera = workspace.CurrentCamera
-
-local ClientFramework = loadstring(game:HttpGet("https://github.com/IdkRandomUsernameok/PublicAssets/raw/refs/heads/main/Modules/ClientFramework/ClientFramework.lua"))()
-
 local function tick()
 	return Workspace:GetServerTimeNow()
 end
@@ -59,9 +56,6 @@ function module.CreateSound(sound,parent)
 		end)
 	end)
 	return newSound
-end
-function module.shakeScreen(v)
-	ClientFramework.Shake(v)
 end
 
 function module.Create(instance,name,parent)
@@ -431,6 +425,7 @@ function module.CreateBodyMover(...)
 	end
 	return bm
 end
+
 
 
 return module
